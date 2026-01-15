@@ -18,11 +18,11 @@ const corsOption = {
 
 app.use(cors(corsOption));
 
+app.use(express.json({limit: '50mb'}));
+
 app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook);
 
 app.all('/api/auth/{*any}', toNodeHandler(auth));
-
-app.use(express.json({limit: '50mb'}));
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Server is Live!');

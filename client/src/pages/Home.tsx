@@ -10,17 +10,19 @@ const Home = () => {
     const [input, setInput] = React.useState('');
     const [loading, setLoading] = React.useState(false);
 
-    const {data:session} = authClient.useSession()
+    const { data: session } = authClient.useSession()
+
+    console.log("SESSION:", session);
 
     const navigate = useNavigate()
 
     const onSubmitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        try{
-            if(!session?.user){
+        try {
+            if (!session?.user) {
                 return toast.error('Please sign in to create a project')
-            } else if(!input.trim()){
+            } else if (!input.trim()) {
                 return toast.error('Please enter a valid project description')
             }
 
@@ -34,10 +36,10 @@ const Home = () => {
 
             navigate(`/projects/${res.data.projectId}`)
 
-        } catch(error: any){
+        } catch (error: any) {
             setLoading(false)
             toast.error(error?.response?.data?.message || error.message)
-        }        
+        }
     }
 
     return (
@@ -70,13 +72,13 @@ const Home = () => {
                 </button>
             </form>
 
-            <div className="flex flex-wrap items-center justify-center gap-16 md:gap-20 mx-auto mt-16">
+            {/* <div className="flex flex-wrap items-center justify-center gap-16 md:gap-20 mx-auto mt-16">
                 <img className="max-w-28 md:max-w-32" src="https://saasly.prebuiltui.com/assets/companies-logo/framer.svg" alt="" />
                 <img className="max-w-28 md:max-w-32" src="https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg" alt="" />
                 <img className="max-w-28 md:max-w-32" src="https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg" alt="" />
                 <img className="max-w-28 md:max-w-32" src="https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg" alt="" />
                 <img className="max-w-28 md:max-w-32" src="https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg" alt="" />
-            </div>
+            </div> */}
         </section>
     )
 }
