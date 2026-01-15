@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -15,19 +15,19 @@ datasource db {
 }
 
 model User {
-  id            String @id
+  id            String   @id
   email         String
   name          String
-  totalCreation Int    @default(0)
-  credits       Int    @default(20)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  emailVerified Boolean   @default(false)
-  
+  totalCreation Int      @default(0)
+  credits       Int      @default(20)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  emailVerified Boolean  @default(false)
+
   // Relations
-  projects WebsiteProject[]
-  sessions      Session[]
-  accounts      Account[]
+  projects     WebsiteProject[]
+  sessions     Session[]
+  accounts     Account[]
   transactions Transaction[]
 
   @@map("user")
@@ -89,7 +89,7 @@ model Transaction {
   updatedAt DateTime @updatedAt
 
   // Relations
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Session {
@@ -139,4 +139,3 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
-
