@@ -7,14 +7,6 @@ SiteBuilder is a **full-stack, AI-powered, token-based website builder** that al
 ---
 
 ## 🧠 Core Idea
----
-# 🌐 SiteBuilder – AI-Powered Website Builder
-
-SiteBuilder is a **full-stack, AI-powered, token-based website builder** that allows users to generate and deploy complete websites simply by writing **natural language prompts**. It combines modern web technologies, secure payments, and scalable infrastructure to deliver a production-ready platform.
-
----
-
-## 🧠 Core Idea
 
 Instead of manually coding a website:
 
@@ -26,6 +18,8 @@ Instead of manually coding a website:
 Tokens act as **currency**, and Stripe handles **secure payments**.
 
 ---
+
+
 
 ## 🚀 Key Features Explained
 
@@ -84,6 +78,19 @@ This gives users **full ownership and flexibility** over their generated website
 * Clean separation of frontend and backend
 * Easy to scale, maintain, and deploy
 * Uses Node.js throughout the stack
+
+---
+
+## 🖼️ SiteBuilder Website 
+
+### 🏠 Home Page
+![SiteBuilder Home Page](image/sitebuilder.png)
+
+### 📁 My Projects Page
+![SiteBuilder Projects Page](image/project.png)
+
+### 🚀 Published Website Page
+![SiteBuilder Published Page](image/published.png)
 
 ---
 

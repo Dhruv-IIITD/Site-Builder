@@ -17,7 +17,7 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
 
     const messageRef = useRef<HTMLDivElement>(null);
     const [input, setInput] = useState('');
-    
+
     const handleRollback = async (versionId: string) => {
         try {
             const confirm = window.confirm('Are you sure you want to rollback?');
@@ -25,9 +25,9 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
 
             setIsGenerating(true);
 
-            const {data} = await api.get(`/api/project/rollback/${project.id}/${versionId}`);
-            
-            const {data: data2} = await api.get(`/api/user/project/${project.id}`);
+            const { data } = await api.get(`/api/project/rollback/${project.id}/${versionId}`);
+
+            const { data: data2 } = await api.get(`/api/user/project/${project.id}`);
             toast.success(data.message);
             setProject(data2.project);
             setIsGenerating(false);
@@ -41,7 +41,7 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
 
     const fetchProject = async () => {
         try {
-            const {data} = await api.get(`/api/user/project/${project.id}`);
+            const { data } = await api.get(`/api/user/project/${project.id}`);
             setProject(data.project);
         } catch (error: any) {
             toast.error(error?.response?.data?.message || error.message);
@@ -59,7 +59,7 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
                 fetchProject();
             }, 10000);
 
-            const {data} = await api.post(`/api/project/revision/${project.id}`, {
+            const { data } = await api.post(`/api/project/revision/${project.id}`, {
                 message: input
             });
 
@@ -75,7 +75,7 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
             toast.error(error?.response?.data?.message || error.message);
             console.log(error);
             clearInterval(interval);
-        } 
+        }
     }
 
     useEffect(() => {
@@ -188,31 +188,32 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
                 </div>
 
                 {/* Input */}
-                <form
-                    onSubmit={handleRevisions}
-                    className='m-3 relative'>
-                    <div className='flex items-center gap-2'>
+                <form onSubmit={handleRevisions} className="m-3">
+                    <div className="relative flex items-center">
                         <textarea
-                            rows={4} placeholder='Describe your project ...'
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            className='flex-1 p-3 rounded-xl resize-none bg-gray-800 text-sm outline-none ring ring-gray-700 focus:ring-indigo-500 text-gray-100 placeholder-gray-400 tranition-all'
-                            disabled={isGenerating}
+                        rows={4}
+                        placeholder="Describe your project ..."
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        className="flex-1 p-3 pr-14 rounded-xl resize-none bg-gray-800 text-sm outline-none ring ring-gray-700 focus:ring-indigo-500 text-gray-100 placeholder-gray-400 transition-all"
+                        disabled={isGenerating}
                         />
 
-                        <button disabled = {isGenerating || !input.trim()} 
-                        className = {`absolute bottom-2.5 right-2.5 rounded-full bg-linear-to-r from-indigo-500 to-indigo-600 p-2.5
-                                to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 transition-colors
-                                disabled:opacity-60 text-white
-                        `}>
-                            {isGenerating ? (
-                                <Loader2Icon className='size-7 p-1.5 animate-spin text-white' />
-                            ) : (
-                                <SendIcon className='size-7 p-1.5 text-white' />
-                            )}
+                        <button
+                        disabled={isGenerating || !input.trim()}
+                        className="absolute bottom-2.5 right-2.5 rounded-full bg-linear-to-r from-indigo-500 to-indigo-600 p-2.5
+                                    hover:from-indigo-600 hover:to-indigo-700 transition-colors
+                                    disabled:opacity-60 text-white"
+                        >
+                        {isGenerating ? (
+                            <Loader2Icon className="size-7 p-1.5 animate-spin text-white" />
+                        ) : (
+                            <SendIcon className="size-7 p-1.5 text-white" />
+                        )}
                         </button>
                     </div>
-                </form>
+                    </form>
+
                 {/* Bottom Bar */}
             </div>
         </div>
